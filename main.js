@@ -4,6 +4,11 @@ let myBalance = 10000;
 let pin = 1050;
 let pinNumber = await inquirer.prompt([
     {
+        name: "welcome",
+        type: "string",
+        message: "welcome to my ATM"
+    },
+    {
         name: "pin",
         type: "number",
         message: "Enter your pincode",
@@ -16,7 +21,7 @@ if (pinNumber.pin === pin) {
             name: "operation",
             type: "list",
             message: "please select the Option",
-            choices: ["withdraw", "check balance", "1000"]
+            choices: ["withdraw", "check balance",]
         }
     ]);
     if (operationAns.operation === "withdraw") {
@@ -25,7 +30,7 @@ if (pinNumber.pin === pin) {
                 name: "amount",
                 message: "Enter your amount",
                 type: "number",
-            }
+            },
         ]);
         myBalance -= amountAns.amount;
         console.log(`your remaning amount is ${myBalance}`);
