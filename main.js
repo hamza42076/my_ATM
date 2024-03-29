@@ -2,6 +2,17 @@
 import inquirer from "inquirer";
 let myBalance = 10000;
 let pin = 1050;
+let account_code = 1234;
+let account_num = await inquirer.prompt([
+    {
+        name: "code",
+        type: "number",
+        message: "Enter your account number",
+    },
+]);
+if (account_num.code === account_code) {
+    console.log("LOGIN SUCCESSFULLY! ");
+}
 let pinNumber = await inquirer.prompt([
     {
         name: "welcome",
@@ -15,7 +26,7 @@ let pinNumber = await inquirer.prompt([
     }
 ]);
 if (pinNumber.pin === pin) {
-    console.log("your pincode is correct!!!");
+    console.log("LOGIN SUCCESSFULLY! ");
     let operationAns = await inquirer.prompt([
         {
             name: "operation",
@@ -33,7 +44,7 @@ if (pinNumber.pin === pin) {
             },
         ]);
         myBalance -= amountAns.amount;
-        console.log(`your remaning amount is ${myBalance}`);
+        console.log(`Now Your remaning balance is! ${myBalance}`);
     }
     else if (operationAns.operation === "check balance") {
         console.log(myBalance);
