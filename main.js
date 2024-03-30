@@ -29,10 +29,16 @@ if (pinNumber.pin === pin) {
     console.log("LOGIN SUCCESSFULLY! ");
     let operationAns = await inquirer.prompt([
         {
+            name: "option",
+            type: "list",
+            message: "Select the transition method",
+            choices: ["current", "saving"]
+        },
+        {
             name: "operation",
             type: "list",
             message: "please select the Option",
-            choices: ["withdraw", "check balance",]
+            choices: ["fast cash", "withdraw", "check balance",]
         }
     ]);
     if (operationAns.operation === "withdraw") {
@@ -48,6 +54,18 @@ if (pinNumber.pin === pin) {
     }
     else if (operationAns.operation === "check balance") {
         console.log(myBalance);
+    }
+    else if (operationAns.operation === "fast cash") {
+        let fastcash = await inquirer.prompt([
+            {
+                name: "cash",
+                type: "list",
+                message: "Select your option! ",
+                choices: [500, 1000, 2000, 5000, 10000]
+            }
+        ]);
+        myBalance -= fastcash.cash;
+        console.log(`Now Your remaning balance is! ${myBalance}`);
     }
 }
 else {
